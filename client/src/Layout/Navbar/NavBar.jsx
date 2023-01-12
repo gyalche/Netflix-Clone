@@ -1,7 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../Assets/logo.png';
+import { FaSearch } from 'react-icons/fa';
+import { CgUser } from 'react-icons/cg';
+import { FaHeart } from 'react-icons/fa';
 const NavBar = () => {
+  const hover = 'hover:text-subMain transition text-white';
+  const Hover = ({ isActive }) => (isActive ? 'text-subMain' : hover);
+
   return (
     <>
       <div className="bg-main shadow-md sticky top-0 z-20">
@@ -15,7 +21,42 @@ const NavBar = () => {
               />
             </Link>
           </div>
-          
+          {/*search form*/}
+          <div className="col-span-3">
+            <form className="w-full text-sm bg-dryGray rounded flex-btn gap-4">
+              <button
+                type="submit"
+                className="bg-subMain w-12 flex-colo h-12 rounded text-white">
+                <FaSearch />
+              </button>
+              <input
+                type="text"
+                placeholder="search Movie name from here"
+                className="font-medium bg-transparent text-black border-none pl-3 placeholder:text-border text-sm w-11/12 h-12"
+              />
+            </form>
+          </div>
+          {/*menus */}
+          <div className="col-span-3 font-medium text-sm hidden xl:gap-14 2xl:gap-20 justify-between lg:flex xl:justify-start items-center">
+            <NavLink to="/movies" className={Hover}>
+              Movies
+            </NavLink>
+            <NavLink to="/about-us" className={Hover}>
+              About Us
+            </NavLink>
+            <NavLink to="/contact-us" className={Hover}>
+              Contact Us
+            </NavLink>
+            <NavLink to="/login" className={Hover}>
+              <CgUser className="w-8 h-8" />
+            </NavLink>
+            <NavLink to="/favorite" className={`${hover} relative`}>
+              <FaHeart className="w-6 h-6" />
+              <div className="w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1">
+                2
+              </div>
+            </NavLink>
+          </div>
         </div>
       </div>
     </>
